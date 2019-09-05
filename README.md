@@ -1,3 +1,3 @@
-# myscrum : Gestion de projet AGILE
+# donOt : Gestion de projet AGILE
 
 Cahier des charges :
