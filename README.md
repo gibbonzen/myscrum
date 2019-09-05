@@ -10,6 +10,7 @@ Pour tout le monde :
 + Fonctionnalités chiffrées
 + Décompte des temps passé de manière automatiques ( et indicateur couleur pour afficher l’état d’avancement vert, orange rouge ?
 + Attribution 
++ icones pour tous les membres
 
 Pour le responsable :
 
