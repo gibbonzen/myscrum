@@ -3,39 +3,39 @@ Modèle physique
  git/
   |------- project.json
   |------- backlog/
-  |			|------- post-it_1.json
-  |			|------- post-it_2.json
-  |			+------- post-it_n.json
+  |        |------- post-it_1.json
+  |        |------- post-it_2.json
+  |        +------- post-it_n.json
   |
   |------- sprints/
-  |			|------- sprint_1/
-  |			|          |------- sprint_1.json
-  |			|          |------- post-it_1.json
-  |			|          |------- post-it_2.json
-  |			|          +------- post-it_n.json
-  |			|
-  |			|------- sprint_2/
-  |			|         |------- sprint_2.json
-  |			|         |------- post-it_1.json
-  |			|         |------- post-it_2.json
-  |			|         +------- post-it_n.json
-  |			|
-  |			+------- sprint_n/
-  |			|         |------- sprint_n.json
-  |			          |------- post-it_1.json
-  |			          |------- post-it_2.json
-  |			          +------- post-it_n.json
+  |        |------- sprint_1/
+  |        |         |------- sprint_1.json
+  |        |         |------- post-it_1.json
+  |        |         |------- post-it_2.json
+  |        |         +------- post-it_n.json
+  |        |
+  |        |------- sprint_2/
+  |        |         |------- sprint_2.json
+  |        |         |------- post-it_1.json
+  |        |         |------- post-it_2.json
+  |        |         |------- post-it_n.json
+  |        |
+  |        +------- sprint_n/
+  |                  |------- sprint_n.json
+  |                  |------- post-it_1.json
+  |                  |------- post-it_2.json
+  |                  |------- post-it_n.json
   |			 
   +------- sandbox/	
-		    |------- post-it_1.json
-		    |------- post-it_2.json
-		    +------- post-it_n.json
+           |------- post-it_1.json
+           |------- post-it_2.json
+           +------- post-it_n.json
 
 ---			
 
 Modèle Conceptuel
 
-Post-it.json : 
+```Post-it.json : 
 {
 	"id": string // sha name + sprint
 	"name": string,
@@ -53,25 +53,19 @@ Post-it.json :
 	"description": long string, // description complète (markdown)
 	"comments": [{ "user": string, "comment": string}],
 	"attachements": [string]
-}
+}```
 
-Sprint.json :
+```Sprint.json :
 {
 	"name": string,
 	"start": string,
 	"end": string,
 	"active": bool,
 	"length": number // nombre de jours
-}
+}```
 
-project.json :
+```project.json :
 {
 	"name": string,
 	"users": [string]
-}
-
-
-
-
-
-
+}```
