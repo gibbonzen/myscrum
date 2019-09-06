@@ -36,3 +36,10 @@ Features en vrac :
   - H2 = Tâche (sugar)
   - H3 = Retour (topping)
   
+# IHM
++ Espace "My donOt"
++ Espace "Sprints"
++ Backlog ?
++ Settings
++ Reports ? 
++ Historique ?
