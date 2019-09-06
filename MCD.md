@@ -35,7 +35,7 @@ Modèle physique
 
 Modèle Conceptuel
 
-```Post-it.json : 
+Post-it.json : ```json 
 {
 	"id": string // sha name + sprint
 	"name": string,
@@ -55,7 +55,7 @@ Modèle Conceptuel
 	"attachements": [string]
 }```
 
-```Sprint.json :
+Sprint.json : ```json
 {
 	"name": string,
 	"start": string,
@@ -64,7 +64,7 @@ Modèle Conceptuel
 	"length": number // nombre de jours
 }```
 
-```project.json :
+project.json : ```json
 {
 	"name": string,
 	"users": [string]
