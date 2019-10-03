@@ -35,6 +35,7 @@ Features en vrac :
   - Hiérarchie 1 = Fonctionnalité (donut)
   - H2 = Tâche (sugar)
   - H3 = Retour (topping)
+  + Les tâches qui durent plus de 1 SPRINT doivent être scindées pour ne tenir QUE sur UN SPRINT : les noms doivent être cohérents !!!
   
 # IHM
 + Espace "My donOt"
