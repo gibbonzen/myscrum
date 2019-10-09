@@ -1,0 +1,36 @@
+<div class="row row-40 cols-5">
+  <div class="text-area">
+
+    <div class="text-msg"
+        *ngFor="let message of messages"
+        [ngClass]="{'text-me':message.name === 'Me'}">
+      <div class="text-bbl">
+        <span [ngClass]="{
+          'client': message.name !== 'Me' && message.name !== 'Server',
+          'me':message.name === 'Me',
+          'server':message.name === 'Server'
+        }">{{message.name}} : </span>
+        {{message.message}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="text-input">
+    <mat-form-field class="width-100">
+        <input #myMessage matInput
+              placeholder="Enter your message here..."
+              (keydown.enter)="onKeydown($event)">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary"
+            (click)="sendMessage(myMessage.value)"
+            [disabled]="myMessage.value === '' || myMessage.value === 'Enter your message here...'">
+      Send
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,66 @@
+.row {
+  display: block;
+  height: 20px;
+}
+
+.row-40 {
+  height: 800px;
+}
+
+.cols {
+  width: 100px;
+}
+
+.cols-5 {
+  width: 500px;
+}
+
+.text-area {
+  width: 100%;
+  height: 100%;
+  background-color: silver;
+  border: 1px solid black;
+  border-bottom: none;
+  overflow-y: auto;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+mat-form-field {
+  border: 1px solid black;
+}
+
+.server {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: green;
+}
+
+.client {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: blue;
+}
+
+.me {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: crimson;
+}
+
+.text-msg {
+  padding: 10px;
+}
+
+.text-me {
+  text-align: right;
+}
+
+.text-bbl {
+  display: inline-block;
+  padding: 10px;
+  background-color: aliceblue;
+  border-radius: 10px 10px;
+}
