@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { ChatMessage } from 'src/app/model/ChatMessage.model';
+import { ChatMessage } from 'src/app/models/ChatMessage.model';
+import { ScrollableDirective } from 'src/app/directives/scrollable.directive';
 
 @Component({
   selector: 'app-chat',
@@ -8,6 +9,10 @@ import { ChatMessage } from 'src/app/model/ChatMessage.model';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  @ViewChild(ScrollableDirective, { read: false, static: false })
+  private scrollContainer: ScrollableDirective
+
+  private showBtn: boolean = true
 
   private messages: ChatMessage[] = []
 
@@ -18,6 +23,8 @@ export class ChatComponent implements OnInit {
   }
 
   private sendMessage(text: string) {
+    if(text === '' || text === 'Enter your message here...') return
+
     this.chat.sendMessage(text)
   }
 
@@ -29,7 +36,19 @@ export class ChatComponent implements OnInit {
     // if(event.key === 'Enter') {
       this.sendMessage(event.target.value)
       event.target.value = ""
-    // }
+      // }
+    }
+
+    private scrollToBottom() {
+      this.scrollContainer.scrollToBottom()
+    }
+
+    private isAutoScrollEnable() {
+      if(this.scrollContainer !== undefined) {
+        this.showBtn = this.scrollContainer.isBottom()
+      }
+
+      return this.showBtn
   }
 
 }

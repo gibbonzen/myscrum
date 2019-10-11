@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
-import { ChatMessage } from 'src/app/model/ChatMessage.model';
-
-const MESSAGE_EVENT: string = 'message';
+import { ChatMessage } from 'src/app/models/ChatMessage.model';
+import { SocketService } from '../socket/socket.service';
+import { SocketEvents } from 'src/app/models/SocketEvents.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,9 @@ export class ChatService {
     new ChatMessage("Averel", "Test static d'un client")
   ]
 
-  constructor() { }
+  constructor(private socket: SocketService) {
+    this.socket.onMessage((msg: ChatMessage) => this.onMessage(msg))
+  }
 
   public sendMessage(text: string) {
     this.onMessage(new ChatMessage(this.user, text))
@@ -24,14 +26,23 @@ export class ChatService {
 
   private onMessage(message: ChatMessage) {
     this.messages.push(message)
-    this.emitter.emit(MESSAGE_EVENT, message)
+    this.emit(message)
+
+    if(this.messages.length > 5) {
+      this.messages.shift()
+    }
+  }
+
+  public emit(message: ChatMessage) {
+    this.emitter.emit(SocketEvents.MESSAGE, message)
+    this.socket.sendMessage(message)
   }
 
   public subscribe(onMessage) {
-    this.emitter.addListener(MESSAGE_EVENT, onMessage)
+    this.emitter.addListener(SocketEvents.MESSAGE, onMessage)
 
     if(this.messages.length > 0) {
-      this.messages.forEach(m => this.emitter.emit(MESSAGE_EVENT, m))
+      this.messages.forEach(m => this.emitter.emit(SocketEvents.MESSAGE, m))
     }
   }
 

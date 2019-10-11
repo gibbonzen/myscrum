@@ -4,10 +4,14 @@ import { MaterialModule } from 'src/app/material.module'; // Import MaterialModu
 
 import { ChatRoutingModule } from './chat-routing.module';
 import { ChatComponent } from './chat.component';
+import { ScrollableDirective } from 'src/app/directives/scrollable.directive';
 
 
 @NgModule({
-  declarations: [ChatComponent],
+  declarations: [
+    ChatComponent,
+    ScrollableDirective
+  ],
   imports: [
     CommonModule,
     MaterialModule,

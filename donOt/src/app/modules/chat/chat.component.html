@@ -1,5 +1,5 @@
 <div class="row row-40 cols-5">
-  <div class="text-area">
+  <div class="text-area" scrollable>
 
     <div class="text-msg"
         *ngFor="let message of messages"
@@ -9,28 +9,28 @@
           'client': message.name !== 'Me' && message.name !== 'Server',
           'me':message.name === 'Me',
           'server':message.name === 'Server'
-        }">{{message.name}} : </span>
+        }">({{message.time | date:'hh:mm:ss'}}) {{message.name}} : </span>
         {{message.message}}
       </div>
     </div>
 
   </div>
 
-  <div class="text-input">
-    <mat-form-field class="width-100">
-        <input #myMessage matInput
-              placeholder="Enter your message here..."
-              (keydown.enter)="onKeydown($event)">
-    </mat-form-field>
+  <mat-form-field class="width-100">
+    <input #myMessage matInput
+            placeholder="Enter your message here..."
+            (keydown.enter)="onKeydown($event)">
+      <button mat-button matSuffix mat-icon-button aria-label="Send" color="primary"
+              (click)="sendMessage(myMessage.value)">
+              <mat-icon>send</mat-icon>
+      </button>
+  </mat-form-field>
+
+  <div class="bottom-btn">
+    <button *ngIf="!isAutoScrollEnable()"
+            mat-button
+            (click)="scrollToBottom()">Go to last message</button>
   </div>
 
-  <div>
-    <button mat-raised-button color="primary"
-            (click)="sendMessage(myMessage.value)"
-            [disabled]="myMessage.value === '' || myMessage.value === 'Enter your message here...'">
-      Send
-      <mat-icon>send</mat-icon>
-    </button>
-  </div>
 
 </div>
