@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { ChatMessage } from 'src/app/models/ChatMessage.model';
 import { ScrollableDirective } from 'src/app/directives/scrollable.directive';
+import { ChatMessage } from 'src/app/models/socket/ChatMessage.model';
 
 @Component({
   selector: 'app-chat',

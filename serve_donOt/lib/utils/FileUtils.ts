@@ -3,7 +3,12 @@ const path = require('path')
 
 export class FileUtils {
 
-  static read(file: string) {
-    return JSON.parse(fs.readFileSync(file))
+  static read(filepath: string) {
+    return JSON.parse(fs.readFileSync(filepath))
+  }
+
+  static write<T>(filepath: string, obj: T) {
+    let arr = []
+    fs.writeFileSync(filepath, JSON.stringify(obj, arr, '  '))
   }
 }

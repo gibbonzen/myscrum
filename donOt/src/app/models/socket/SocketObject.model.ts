@@ -4,7 +4,7 @@ export interface SocketObject<T> {
 }
 
 export class SocketObjectFactory {
-  
+
   public static create<T>(objects: T) {
     console.log("Create socket object")
     return {

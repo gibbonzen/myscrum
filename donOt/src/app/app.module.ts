@@ -10,11 +10,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatModule } from './modules/chat/chat.module';
-import { ScrollableDirective } from './directives/scrollable.directive';
 import { BacklogModule } from './modules/backlog/backlog.module';
-import { BacklogComponent } from './modules/backlog/backlog.component';
 import { SprintModule } from './modules/sprint/sprint.module';
-import { SprintComponent } from './modules/sprint/sprint.component';
 
 const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -22,9 +19,7 @@ const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {}
   declarations: [
     // Components
     AppComponent,
-    DashboardComponent,
-    BacklogComponent,
-    SprintComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,

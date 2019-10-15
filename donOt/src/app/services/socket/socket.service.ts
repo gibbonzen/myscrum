@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { SocketMessage } from 'src/app/models/SocketMessage.model';
+import { SocketObject } from 'src/app/models/socket/SocketObject.model';
+import { SocketEvents } from 'src/app/models/socket/SocketEvents.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,12 @@ export class SocketService {
 
   constructor(private socket: Socket) { }
 
-  public sendMessage(msg: SocketMessage) {
-    this.socket.emit("message", msg)
+  public send<T>(event: SocketEvents, obj: SocketObject<T>) {
+    this.socket.emit(event, obj)
   }
 
-  public onMessage(next: (msg: SocketMessage) => void) {
-    this.socket.on('message', next)
+  public onEvent<T>(event: SocketEvents, next: (obj: SocketObject<T>) => void) {
+    this.socket.on(event, next)
   }
 
 }

@@ -1,8 +1,8 @@
-import { SocketObject } from "./SocketMessage.model"
+import { SocketObject } from './SocketObject.model'
 
 export class ChatMessage implements SocketObject<string> {
-  name: string
   time: number
+  name: string
   object: string
 
   constructor(name: string, message: string) {

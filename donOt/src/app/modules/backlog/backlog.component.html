@@ -1,1 +1,18 @@
 <p>backlog works!</p>
+
+<mat-card class="card"
+          *ngFor="let el of backlogManager.getElements()">
+
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{el.name}}</mat-card-title>
+    <mat-card-subtitle>{{el.id}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      {{el.description}}
+    </p>
+  </mat-card-content>
+
+</mat-card>

@@ -6,6 +6,10 @@ const routes: Routes = [
   { path: '', component: DashboardComponent }, // root is dashboard component page
   { path: 'dashboard', component: DashboardComponent },
   {
+    path: 'backlog',
+    loadChildren: './modules/backlog/backlog.module#BacklogModule',
+  },
+  {
     path: 'chat',
     loadChildren: './modules/chat/chat.module#ChatModule'
   },

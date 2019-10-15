@@ -20,7 +20,8 @@ import {
   MatDialogModule,
   MatChipsModule,
   MatMenuModule,
-  MatDividerModule
+  MatDividerModule,
+  MatCardModule
   } from '@angular/material';
 
 @NgModule({
@@ -44,7 +45,8 @@ import {
     MatDialogModule,
     MatChipsModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
 	],
   exports: [
   	MatButtonModule,
@@ -66,7 +68,8 @@ import {
     MatDialogModule,
     MatChipsModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
 	],
 })
 export class MaterialModule { }

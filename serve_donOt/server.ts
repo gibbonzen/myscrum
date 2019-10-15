@@ -1,4 +1,9 @@
 import { SocketService } from "./lib/socket/SocketService"
+import { BacklogManager } from "./lib/scrum/controller/BacklogManager"
+import { ScrumElement } from "./lib/scrum/model/ScrumElement"
+import { SocketObject, SocketObjectFactory } from "./lib/socket/SocketMessage.model"
+import { SocketEvents } from "./lib/socket/SocketEvents.enum"
+import { ScrumElementEvent } from "./lib/scrum/controller/ScrumElementEvent.enum"
 
 const express = require('express')
 const app = express()
@@ -21,3 +26,12 @@ const ioService = SocketService.getInstance(server)
 ioService.listen()
 
 ioService.broadcastTest()
+
+// Watcher
+let backlogManager = new BacklogManager()
+backlogManager.on(ScrumElementEvent.ADD, (el: ScrumElement) => 
+  ioService.broadcast(SocketEvents.SCRUM_ELEMENT_ADDED, SocketObjectFactory.create<ScrumElement>(el)))
+
+ioService.onConnect(() => {
+  ioService.broadcast(SocketEvents.SCRUM_ELEMENT_ADDED, SocketObjectFactory.create<ScrumElement[]>(backlogManager.getAll()))
+})

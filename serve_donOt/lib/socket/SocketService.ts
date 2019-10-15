@@ -1,18 +1,22 @@
-import { SocketMessage } from "./SocketMessage.model"
 import { ChatMessage } from "./ChatMessage.model"
 import { SocketEvents } from "./SocketEvents.enum"
 import { Tools } from "../utils/Tools"
+import { EventEmitter } from "events"
+import { SocketObject } from "./SocketMessage.model"
+import { LOG, Color } from "../utils/LOG"
 
 const socket_io = require('socket.io')
 
 export class SocketManager {
+  private io
   private sockets: any[] = []
 
-  constructor() {}
+  constructor(io) {
+    this.io = io
+  }
 
   public add(socket) {
     this.sockets.push(socket)
-    this.onEvent(socket, console.log)
   }
   
   public get(socket) {
@@ -23,25 +27,24 @@ export class SocketManager {
     this.sockets.splice(this.sockets.indexOf(this.get(socket)), 1)
   }
 
-  private onEvent(socket, onEvent) {
-    socket.on(SocketEvents.MESSAGE, onEvent)
+  public broadcast(event, obj) {
+    LOG.log(Color.FG_RED, `Emit: ${event}`)
+    this.io.emit(event, obj)
   }
 
-  public broadcast(msg: SocketMessage) {
-    this.sockets.forEach(s => {
-      s.emit(SocketEvents.MESSAGE, msg)
-    })
-  }
 }
 
 export class SocketService {
   
   public io
   public static INSTANCE: SocketService
-  public manager: SocketManager = new SocketManager()
-  
+  public manager: SocketManager
+
+  private emitter = new EventEmitter()
+
   private constructor(Server) {
     this.io = socket_io(Server)
+    this.manager = new SocketManager(this.io)
   }
   
   public static getInstance(Server) {
@@ -53,20 +56,32 @@ export class SocketService {
   
   public listen() {
     this.io.on('connection', socket => {
-      this.manager.add(socket)
+      console.log("Socket connected...")
+      this.emitter.emit('connect')
       
       socket.emit(SocketEvents.MESSAGE, new ChatMessage('Server', 'Connection established'))
       socket.on('disconnect', socket => this.onDisconnect(socket))
+      
+      this.manager.add(socket)
     })
   }
-
+  
   private onDisconnect(socket) {
-    console.log("Disconnected", socket)
+    console.log("Socket disconnected...")
     this.manager.remove(socket)
+  }
+
+  public onConnect(next) {
+    this.emitter.on('connect', next)
+  }
+
+  public broadcast<T>(event: SocketEvents, obj: SocketObject<T>) {
+    this.manager.broadcast(event, obj)
   }
   
   public broadcastTest() {
-    this.manager.broadcast(new ChatMessage('Server', Tools.generateID()))
+    this.manager.broadcast(SocketEvents.MESSAGE, new ChatMessage('Server', Tools.generateID()))
     setTimeout(() => this.broadcastTest(), 2500)
   }
+
 }
