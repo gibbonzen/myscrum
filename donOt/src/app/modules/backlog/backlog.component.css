@@ -1,8 +1,13 @@
 .card {
   max-width: 400px;
+  margin-bottom: 10px;
 }
 
 .header-image {
   background-image: url('../../../assets/img/donut.png');
   background-size: cover;
+}
+
+.width-100 {
+  width: 100%;
 }

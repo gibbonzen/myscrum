@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { BacklogModule } from './modules/backlog/backlog.module';
 import { SprintModule } from './modules/sprint/sprint.module';
+import { ScrumManager } from './services/scrum/scrum.manager.service';
 
 const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -36,8 +37,9 @@ const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {}
 
     SprintModule
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private scrumManager: ScrumManager) {}
+}

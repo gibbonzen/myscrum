@@ -21,8 +21,10 @@ import {
   MatChipsModule,
   MatMenuModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatFormFieldModule
   } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -46,7 +48,10 @@ import {
     MatChipsModule,
     MatMenuModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+
+    ReactiveFormsModule
 	],
   exports: [
   	MatButtonModule,
@@ -69,7 +74,10 @@ import {
     MatChipsModule,
     MatMenuModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    
+    ReactiveFormsModule
 	],
 })
 export class MaterialModule { }

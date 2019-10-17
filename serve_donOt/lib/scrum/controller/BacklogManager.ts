@@ -35,22 +35,31 @@ export class BacklogManager {
     this.emitter.addListener(event, next)
   }
 
-  private addElement(el: ScrumElement) {
+  public addElement(el: ScrumElement) {
     console.log(`Scrum element added: ${el.name}`)
     this.scrumElements.push(el)
     this.emit(ScrumElementEvent.ADD, el)
   }
   
-  private updateElement(el: ScrumElement) {
+  public updateElement(el: ScrumElement) {
     console.log(`Scrum element updated: ${el.name}`)
+    let current = this.scrumElements.find(sel => sel.id === el.id)
+    
+    for(let key of Object.keys(current)) {
+      current[key] = el[key]
+    }
   }
   
-  private removeElement(el: ScrumElement) {
+  public removeElement(el: ScrumElement) {
     console.log(`Scrum element removed: ${el.name}`)
+    this.scrumElements.splice(this.indexOf(el))
+  }
+
+  public indexOf(el: ScrumElement) {
+    return this.scrumElements.indexOf(el)
   }
 
   private emit(event: ScrumElementEvent, el: ScrumElement) {
-    console.log("Event:", event)
     this.emitter.emit(event, el)
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
 import { SocketService } from '../socket/socket.service';
-import { SocketEvents } from 'src/app/models/socket/SocketEvents.model';
+import { SocketEvent } from 'src/app/models/socket/SocketEvent.model';
 import { ChatMessage } from 'src/app/models/socket/ChatMessage.model';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ChatService {
   ]
 
   constructor(private socket: SocketService) {
-    this.socket.onEvent(SocketEvents.MESSAGE, (obj: ChatMessage) => this.onMessage(obj))
+    this.socket.onEvent(SocketEvent.MESSAGE, (obj: ChatMessage) => this.onMessage(obj))
   }
 
   public sendMessage(text: string) {
@@ -34,15 +34,15 @@ export class ChatService {
   }
 
   public emit(message: ChatMessage) {
-    this.emitter.emit(SocketEvents.MESSAGE, message)
-    this.socket.send(SocketEvents.MESSAGE, message)
+    this.emitter.emit(SocketEvent.MESSAGE, message)
+    this.socket.send(SocketEvent.MESSAGE, message)
   }
 
   public subscribe(onMessage) {
-    this.emitter.addListener(SocketEvents.MESSAGE, onMessage)
+    this.emitter.addListener(SocketEvent.MESSAGE, onMessage)
 
     if(this.messages.length > 0) {
-      this.messages.forEach(m => this.emitter.emit(SocketEvents.MESSAGE, m))
+      this.messages.forEach(m => this.emitter.emit(SocketEvent.MESSAGE, m))
     }
   }
 

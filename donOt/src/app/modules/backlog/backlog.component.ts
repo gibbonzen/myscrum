@@ -1,21 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ScrumElementService } from 'src/app/services/scrum-element/scrum-element.service';
-import { SocketEvents } from 'src/app/models/socket/SocketEvents.model';
-import { BacklogManager } from 'src/app/services/BacklogManager';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { BacklogManager } from 'src/app/services/scrum/backlog-manager.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-backlog',
   templateUrl: './backlog.component.html',
   styleUrls: ['./backlog.component.css']
 })
-export class BacklogComponent implements OnInit {
+export class BacklogComponent implements OnInit, AfterViewInit {
 
-  constructor(private scrumService: ScrumElementService,
-    private backlogManager: BacklogManager) { }
+  private visible = false
+  description = new FormControl()
 
-  ngOnInit() {
-    this.scrumService.on(SocketEvents.SCRUM_ELEMENT_ADDED, el => this.backlogManager.addElements(el))
+  constructor(private backlogManager: BacklogManager) { }
+
+  ngOnInit() { }
+
+  ngAfterViewInit() {
+    console.log(this.backlogManager.getElements())
   }
 
+  displayTextArea(el) {
+    this.visible = true
+    this.description.setValue(el.description)
+  }
+
+  update(el) {
+    el.description = this.description.value
+    this.visible = false
+  }
 
 }
