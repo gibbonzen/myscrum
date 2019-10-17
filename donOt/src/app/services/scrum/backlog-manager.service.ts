@@ -10,10 +10,15 @@ import { EventEmitter } from 'events';
 export class BacklogManager {
   private emitter = new EventEmitter()
   private elements: ScrumElement[] = []
+  private consume = false;
 
   constructor(private scrumService: ScrumElementService) {
     // Event from socket
-    this.scrumService.on(SocketEvent.SCRUM_ELEMENT_ADDED, el => this.addElements(el))
+    this.scrumService.on<ScrumElement[]>(SocketEvent.SCRUM_ELEMENT_ADDED, el => this.addElements(el))
+    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_CHANGED, el => {
+      this.consume = true
+      this.putElement(el)
+    })
 
     // Event to socket
     this.emitter.addListener(ScrumElementEvent.CHANGE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_CHANGED, el))
@@ -26,7 +31,9 @@ export class BacklogManager {
     let onChange = {
       set: (obj, prop, val) => {
         obj[prop] = val
-        this.emit(ScrumElementEvent.CHANGE, obj)
+
+        if(!this.consume)
+          this.emit(ScrumElementEvent.CHANGE, obj)
         return true
       }
     }
@@ -38,6 +45,14 @@ export class BacklogManager {
     els.forEach(el => this.addElement(el))
   }
 
+  public putElement(el: ScrumElement) {
+    let current = this.getByID(el.id)
+    for(let key in el) {
+      current[key] = el[key]
+    }
+    this.consume = false
+  }
+
   public getElements() {
     return this.elements
   }
@@ -45,6 +60,10 @@ export class BacklogManager {
   public removeElement(el: ScrumElement) {
     this.elements.splice(this.indexOf(el), 1)
     this.emit(ScrumElementEvent.DELETE, el)
+  }
+
+  public getByID(id: string) {
+    return this.elements.find(e => e.id == id)
   }
 
   private indexOf(el: ScrumElement) {

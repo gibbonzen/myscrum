@@ -27,13 +27,18 @@ ioService.listen()
 
 ioService.broadcastTest()
 
-// Watcher
+// Backlog event
 let backlogManager = new BacklogManager()
 backlogManager.on(ScrumElementEvent.ADD, (el: ScrumElement) => 
   ioService.broadcast(SocketEvent.SCRUM_ELEMENT_ADDED, SocketObjectFactory.create<ScrumElement>(el)))
+
+backlogManager.on(ScrumElementEvent.UPDATE, (el: ScrumElement) => 
+  ioService.broadcast(SocketEvent.SCRUM_ELEMENT_CHANGED, SocketObjectFactory.create<ScrumElement>(el)))
+
+// Socket event
 
 ioService.on(SocketEvent.CONNECT, () => {
   ioService.broadcast(SocketEvent.SCRUM_ELEMENT_ADDED, SocketObjectFactory.create<ScrumElement[]>(backlogManager.getAll()))
 })
   
-ioService.on(SocketEvent.SCRUM_ELEMENT_CHANGED, (el: SocketObject<ScrumElement>) => backlogManager.updateElement(el.object))
+ioService.on(SocketEvent.SCRUM_ELEMENT_CHANGED, (el: SocketObject<ScrumElement>) => backlogManager.updateElement(el.object, true))

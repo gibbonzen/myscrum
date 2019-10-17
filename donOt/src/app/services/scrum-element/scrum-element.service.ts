@@ -15,6 +15,9 @@ export class ScrumElementService {
     this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_ADDED, (socketObj: SocketObject<ScrumElement[]>) =>
       this.onEvent(SocketEvent.SCRUM_ELEMENT_ADDED, socketObj)
     )
+    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_CHANGED, (socketObj: SocketObject<ScrumElement>) =>
+      this.onEvent(SocketEvent.SCRUM_ELEMENT_CHANGED, socketObj)
+    )
   }
 
   /**
@@ -22,7 +25,7 @@ export class ScrumElementService {
    * @param event
    * @param next callback method called when event is raised
    */
-  public on(event: SocketEvent, next: (els: ScrumElement[]) => void) {
+  public on<T>(event: SocketEvent, next: (els: T) => void) {
     this.emitter.addListener(event, next)
   }
 
@@ -31,12 +34,11 @@ export class ScrumElementService {
    * @param event
    * @param socketObj
    */
-  private onEvent(event: SocketEvent, socketObj: SocketObject<ScrumElement[]>) {
+  private onEvent<T>(event: SocketEvent, socketObj: SocketObject<T>) {
     this.emitter.emit(event, socketObj.object)
   }
 
   public emit(event: SocketEvent, element: ScrumElement) {
-    console.log("Send now socket event:", event)
     this.socket.send(event, SocketObjectFactory.create(element))
   }
 

@@ -27,7 +27,7 @@ export class BacklogManager {
 
   private subscribe(provider: FileConsumer) {
     provider.on(FileConsumerEvent.ADD, (el: ScrumElement) => this.addElement(el))
-    provider.on(FileConsumerEvent.UPDATE, (el: ScrumElement) => this.updateElement(el))
+    provider.on(FileConsumerEvent.UPDATE, (el: ScrumElement) => this.updateElement(el, false))
     provider.on(FileConsumerEvent.REMOVE, (el: ScrumElement) => this.removeElement(el))
   }
 
@@ -41,13 +41,16 @@ export class BacklogManager {
     this.emit(ScrumElementEvent.ADD, el)
   }
   
-  public updateElement(el: ScrumElement) {
-    console.log(`Scrum element updated: ${el.name}`)
+  public updateElement(el: ScrumElement, consume: boolean) {
+    console.log(`Scrum element updated: ${el.name}`, el)
     let current = this.scrumElements.find(sel => sel.id === el.id)
     
     for(let key of Object.keys(current)) {
       current[key] = el[key]
     }
+    if(consume) return;
+
+    this.emit(ScrumElementEvent.UPDATE, current)
   }
   
   public removeElement(el: ScrumElement) {

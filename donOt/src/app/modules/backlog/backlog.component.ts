@@ -17,7 +17,7 @@ export class BacklogComponent implements OnInit, AfterViewInit {
   ngOnInit() { }
 
   ngAfterViewInit() {
-    console.log(this.backlogManager.getElements())
+    // console.log(this.backlogManager.getElements())
   }
 
   displayTextArea(el) {
