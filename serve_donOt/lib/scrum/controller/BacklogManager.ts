@@ -6,11 +6,12 @@ import { ScrumElementEvent } from "./ScrumElementEvent.enum";
 import { FileUtils } from "../../utils/FileUtils";
 import { LOG, Color } from "../../utils/LOG";
 import { AppConfig } from "../../utils/Config";
+import { fileURLToPath } from "url";
 
 export class BacklogManager {
   private emitter = new EventEmitter()
   private scrumElements: ScrumElement[] = []
-  private dataFiles: Map<string, string> = new Map()
+  private dataFiles: Map<string, string> = new Map() // id => filepath
 
   constructor() { 
     let backlogConsumer = new FileConsumer()
@@ -51,7 +52,7 @@ export class BacklogManager {
     // On delete :
     // 1. Delete stored data
     // 2. Notify observers
-    provider.on(FileConsumerEvent.REMOVE, (dataFile: DataFile<ScrumElement>) => this.removeElement(dataFile.data))
+    provider.on(FileConsumerEvent.REMOVE, (dataFile: DataFile<ScrumElement>) => this.fileRemoved(dataFile.file.path))
   }
 
   public on(event: ScrumElementEvent, next: (...els: ScrumElement[]) => void) {
@@ -107,6 +108,17 @@ export class BacklogManager {
     if(this.dataFiles.has(scrumElementID)) {
       FileUtils.remove(this.dataFiles.get(scrumElementID))
       this.dataFiles.delete(scrumElementID)
+    }
+  }
+
+  private fileRemoved(filepath: string) {
+    let scrumElementID
+    for(let [id, path] of this.dataFiles.entries()) {
+      if(path === filepath) scrumElementID = id
+    }
+
+    if(scrumElementID) {
+      this.removeElement(this.getByID(scrumElementID))
     }
   }
 

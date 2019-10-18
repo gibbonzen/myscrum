@@ -41,7 +41,7 @@ export class FileConsumer implements FileWatcherListener {
   }
   
   public onFileUnlink(file: FileMetaData) {
-    this.onEvent(FileConsumerEvent.REMOVE, file)
+    this.emitter.emit(FileConsumerEvent.REMOVE, {file: file, data: null})
   }
 
 }

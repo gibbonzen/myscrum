@@ -21,6 +21,9 @@ export class ScrumElementService {
     this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_PUT, (socketObj: SocketObject<ScrumElement>) =>
       this.onEvent(SocketEvent.SCRUM_ELEMENT_PUT, socketObj)
     )
+    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_DEL, (socketObj: SocketObject<ScrumElement>) =>
+      this.onEvent(SocketEvent.SCRUM_ELEMENT_DEL, socketObj)
+    )
   }
 
   /**

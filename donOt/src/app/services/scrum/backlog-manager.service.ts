@@ -15,11 +15,12 @@ export class BacklogManager {
   constructor(private scrumService: ScrumElementService) {
     // Event from socket
     this.scrumService.on<ScrumElement[]>(SocketEvent.SCRUM_ELEMENT_GET, els => this.addElements(els))
-
+    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_ADD, el => this.addElement(el))
     this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_PUT, el => {
       this.consume = true
       this.putElement(el)
     })
+    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_DEL, el => this.removeElement(el))
 
     // Event to socket
     this.emitter.addListener(ScrumElementEvent.CHANGE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_PUT, el))
@@ -59,6 +60,8 @@ export class BacklogManager {
   }
 
   public removeElement(el: ScrumElement) {
+    console.log("remove ", el)
+
     this.elements.splice(this.indexOf(el), 1)
     this.emit(ScrumElementEvent.DELETE, el)
   }
