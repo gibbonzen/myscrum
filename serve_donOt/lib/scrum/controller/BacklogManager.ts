@@ -36,12 +36,17 @@ export class BacklogManager {
     /////////////////////////////
 
     // On new file :
+    // 0. Check if ScrumElement's ID exists
     // 1. Store the ScrumElement's ID and origin file path
     // 2. Store the ScrumElement
     // 3. Notify observers
     provider.on(FileConsumerEvent.ADD, (dataFile: DataFile<ScrumElement>) => {
       this.dataFiles.set(dataFile.data.id, dataFile.file.path)
-      this.addElement(dataFile.data)
+
+      if(!this.exists(dataFile.data.id)) {
+        this.addElement(dataFile.data)
+      }
+
     })
 
     // On update file :
@@ -118,8 +123,14 @@ export class BacklogManager {
     }
 
     if(scrumElementID) {
+      this.dataFiles.delete(scrumElementID)
       this.removeElement(this.getByID(scrumElementID))
     }
+  }
+
+  private exists(id: string) {
+
+    return false
   }
 
   private equals(newElement: ScrumElement): boolean {
