@@ -17,7 +17,7 @@ export class BacklogManager {
     let backlogConsumer = new FileConsumer()
     this.subscribe(backlogConsumer)
 
-    let watcher = new FileWatcher(AppConfig.getLocalRepo('backlog'), 0)
+    let watcher = new FileWatcher(AppConfig.getRepo('backlog'), 0)
     watcher.subscribe(backlogConsumer)
     watcher.start()
   }

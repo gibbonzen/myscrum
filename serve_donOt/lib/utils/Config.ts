@@ -6,6 +6,7 @@ export interface Config {
     port: number
   },
   git: {
+    usedir: string,
     local: string,
     origin: string
   }
@@ -28,14 +29,9 @@ export class AppConfig {
     return AppConfig.config.server.port
   }
   
-  public static getLocalRepo(dir: string) {
+  public static getRepo(dir: string) {
     this.init()
-    return path.join(AppConfig.config.git.local, dir)
-  }
-  
-  public static getOriginRepo(dir: string) {
-    this.init()
-    return path.jon(AppConfig.config.git.origin, dir)
+    return path.join(AppConfig.config.git[AppConfig.config.git.usedir], dir)
   }
   
 }
