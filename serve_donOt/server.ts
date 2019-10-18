@@ -4,22 +4,19 @@ import { ScrumElement } from "./lib/scrum/model/ScrumElement"
 import { SocketObject, SocketObjectFactory } from "./lib/socket/SocketMessage.model"
 import { SocketEvent } from "./lib/socket/SocketEvent.enum"
 import { ScrumElementEvent } from "./lib/scrum/controller/ScrumElementEvent.enum"
+import { AppConfig } from "./lib/utils/Config"
 
 const express = require('express')
 const app = express()
 const server = require('http').Server(app) 
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const path = require('path')
-
-const { FileUtils } = require('./lib/utils/FileUtils')
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-const appConfig = FileUtils.read(path.join(__dirname, '../', 'app.config.json'))
-server.listen(appConfig.server.port, 'localhost', () => console.log(`Started on ${appConfig.server.port}`))
+server.listen(AppConfig.getServerPort(), 'localhost', () => console.log(`Started on ${AppConfig.getServerPort()}`))
 
 // Socket communication
 const ioService = SocketService.getInstance(server)

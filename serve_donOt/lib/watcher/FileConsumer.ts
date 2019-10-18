@@ -8,9 +8,14 @@ export enum FileConsumerEvent {
   REMOVE = "remove"
 }
 
-export interface File {
+export interface FileMetaData {
   path: string,
   stats: any
+}
+
+export interface DataFile<T> {
+  file: FileMetaData,
+  data: T
 }
 
 export class FileConsumer implements FileWatcherListener {
@@ -18,24 +23,24 @@ export class FileConsumer implements FileWatcherListener {
 
   constructor() { }
 
-  public on(event: FileConsumerEvent, listener) {
-    this.emitter.addListener(event, listener)
+  public on<T>(event: FileConsumerEvent, next: (dataFile: DataFile<T>) => void) {
+    this.emitter.addListener(event, next)
   }
 
-  private onEvent(event: FileConsumerEvent, file: File) {
+  private onEvent(event: FileConsumerEvent, file: FileMetaData) {
     let json = FileUtils.read(file.path)
-    this.emitter.emit(event, json)
+    this.emitter.emit(event, {file: file, data: json})
   }
 
-  public onFileAdded(file: File) {
+  public onFileAdded(file: FileMetaData) {
     this.onEvent(FileConsumerEvent.ADD, file)
   }
   
-  public onFileChanged(file: File) {
+  public onFileChanged(file: FileMetaData) {
     this.onEvent(FileConsumerEvent.UPDATE, file)
   }
   
-  public onFileUnlink(file: File) {
+  public onFileUnlink(file: FileMetaData) {
     this.onEvent(FileConsumerEvent.REMOVE, file)
   }
 

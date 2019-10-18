@@ -26,7 +26,7 @@ export class BacklogManager {
   }
 
   public addElement(el: ScrumElement) {
-    console.log(el)
+    if(this.getByID(el.id) !== undefined) return
 
     let onChange = {
       set: (obj, prop, val) => {

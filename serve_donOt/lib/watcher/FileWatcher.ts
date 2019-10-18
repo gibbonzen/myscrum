@@ -1,5 +1,5 @@
 import { EventEmitter } from "events"
-import { FileConsumer, File } from "./FileConsumer"
+import { FileConsumer, FileMetaData } from "./FileConsumer"
 
 const Path = require('path')
 const chokidar = require('chokidar')
@@ -13,9 +13,9 @@ export enum FileWatcherEvent {
 }
 
 export interface FileWatcherListener {
-  onFileAdded: (file: File) => void
-  onFileChanged: (file: File) => void
-  onFileUnlink: (file: File) => void
+  onFileAdded: (file: FileMetaData) => void
+  onFileChanged: (file: FileMetaData) => void
+  onFileUnlink: (file: FileMetaData) => void
 }
 
 export class FileWatcher {
@@ -36,9 +36,9 @@ export class FileWatcher {
   }
 
   public subscribe(consumer: FileConsumer) {
-    this.emitter.addListener(FileWatcherEvent.ADD, (file: File) => consumer.onFileAdded(file))
-    this.emitter.addListener(FileWatcherEvent.UPDATE, (file: File) => consumer.onFileChanged(file))
-    this.emitter.addListener(FileWatcherEvent.REMOVE, (file: File) => consumer.onFileUnlink(file))
+    this.emitter.addListener(FileWatcherEvent.ADD, (file: FileMetaData) => consumer.onFileAdded(file))
+    this.emitter.addListener(FileWatcherEvent.UPDATE, (file: FileMetaData) => consumer.onFileChanged(file))
+    this.emitter.addListener(FileWatcherEvent.REMOVE, (file: FileMetaData) => consumer.onFileUnlink(file))
   }
   
   public isWatching() {
@@ -69,17 +69,17 @@ export class FileWatcher {
    * Read file on added
    */
   private onFileAdded(path, stats) {
-    console.log(`File added: ${Path.basename(path)}`)
+    // console.log(`File added: ${Path.basename(path)}`)
     this.emitter.emit(FileWatcherEvent.ADD, {path: path, stats: stats})
   }
   
   private onFileChange(path, stats) {
-    console.log(`File changed: ${Path.basename(path)}`)
+    // console.log(`File changed: ${Path.basename(path)}`)
     this.emitter.emit(FileWatcherEvent.UPDATE, {path: path, stats: stats})
   }
   
   private onFileUnlink(path, stats) {
-    console.log(`File deleted: ${Path.basename(path)}`)
+    // console.log(`File deleted: ${Path.basename(path)}`)
     this.emitter.emit(FileWatcherEvent.REMOVE, {path: path, stats: stats})
   }
   

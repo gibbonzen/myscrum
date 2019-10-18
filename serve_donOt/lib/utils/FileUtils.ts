@@ -8,7 +8,12 @@ export class FileUtils {
   }
 
   static write<T>(filepath: string, obj: T) {
-    let arr = []
-    fs.writeFileSync(filepath, JSON.stringify(obj, arr, '  '))
+    let arr = null
+    let json = JSON.stringify(obj, arr, '  ')
+    fs.writeFileSync(filepath, json)
+  }
+
+  static remove(filepath: string) {
+    fs.unlinkSync(filepath)
   }
 }
