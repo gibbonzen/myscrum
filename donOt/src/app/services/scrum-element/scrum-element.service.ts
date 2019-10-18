@@ -12,11 +12,14 @@ export class ScrumElementService {
   private emitter = new EventEmitter()
 
   constructor(private socket: SocketService) {
-    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_ADDED, (socketObj: SocketObject<ScrumElement[]>) =>
-      this.onEvent(SocketEvent.SCRUM_ELEMENT_ADDED, socketObj)
+    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_GET, (socketObj: SocketObject<ScrumElement[]>) =>
+      this.onEvent(SocketEvent.SCRUM_ELEMENT_GET, socketObj)
     )
-    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_CHANGED, (socketObj: SocketObject<ScrumElement>) =>
-      this.onEvent(SocketEvent.SCRUM_ELEMENT_CHANGED, socketObj)
+    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_ADD, (socketObj: SocketObject<ScrumElement>) =>
+      this.onEvent(SocketEvent.SCRUM_ELEMENT_ADD, socketObj)
+    )
+    this.socket.onEvent(SocketEvent.SCRUM_ELEMENT_PUT, (socketObj: SocketObject<ScrumElement>) =>
+      this.onEvent(SocketEvent.SCRUM_ELEMENT_PUT, socketObj)
     )
   }
 

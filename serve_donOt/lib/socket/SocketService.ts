@@ -45,9 +45,9 @@ export class SocketService {
   }
   
   private initSocketObservers(socket) {
-    socket.on(SocketEvent.SCRUM_ELEMENT_ADDED, obj => this.emit(SocketEvent.SCRUM_ELEMENT_ADDED, obj))
-    socket.on(SocketEvent.SCRUM_ELEMENT_CHANGED, obj => this.emit(SocketEvent.SCRUM_ELEMENT_CHANGED, obj))
-    socket.on(SocketEvent.SCRUM_ELEMENT_DELETED, obj => this.emit(SocketEvent.SCRUM_ELEMENT_DELETED, obj))
+    socket.on(SocketEvent.SCRUM_ELEMENT_ADD, obj => this.emit(SocketEvent.SCRUM_ELEMENT_ADD, obj))
+    socket.on(SocketEvent.SCRUM_ELEMENT_PUT, obj => this.emit(SocketEvent.SCRUM_ELEMENT_PUT, obj))
+    socket.on(SocketEvent.SCRUM_ELEMENT_DEL, obj => this.emit(SocketEvent.SCRUM_ELEMENT_DEL, obj))
   }
 
   private onDisconnect(socket) {

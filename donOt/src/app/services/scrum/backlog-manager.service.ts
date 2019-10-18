@@ -14,15 +14,16 @@ export class BacklogManager {
 
   constructor(private scrumService: ScrumElementService) {
     // Event from socket
-    this.scrumService.on<ScrumElement[]>(SocketEvent.SCRUM_ELEMENT_ADDED, el => this.addElements(el))
-    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_CHANGED, el => {
+    this.scrumService.on<ScrumElement[]>(SocketEvent.SCRUM_ELEMENT_GET, els => this.addElements(els))
+
+    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_PUT, el => {
       this.consume = true
       this.putElement(el)
     })
 
     // Event to socket
-    this.emitter.addListener(ScrumElementEvent.CHANGE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_CHANGED, el))
-    this.emitter.addListener(ScrumElementEvent.DELETE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_DELETED, el))
+    this.emitter.addListener(ScrumElementEvent.CHANGE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_PUT, el))
+    this.emitter.addListener(ScrumElementEvent.DELETE, el => this.scrumService.emit(SocketEvent.SCRUM_ELEMENT_DEL, el))
   }
 
   public addElement(el: ScrumElement) {
