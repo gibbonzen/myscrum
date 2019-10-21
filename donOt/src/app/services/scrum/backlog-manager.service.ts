@@ -10,16 +10,12 @@ import { EventEmitter } from 'events';
 export class BacklogManager {
   private emitter = new EventEmitter()
   private elements: ScrumElement[] = []
-  private consume = false;
 
   constructor(private scrumService: ScrumElementService) {
     // Event from socket
     this.scrumService.on<ScrumElement[]>(SocketEvent.SCRUM_ELEMENT_GET, els => this.addElements(els))
     this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_ADD, el => this.addElement(el))
-    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_PUT, el => {
-      this.consume = true
-      this.putElement(el)
-    })
+    this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_PUT, el => this.putElement(el))
     this.scrumService.on<ScrumElement>(SocketEvent.SCRUM_ELEMENT_DEL, el => this.removeElement(el))
 
     // Event to socket
@@ -33,9 +29,7 @@ export class BacklogManager {
     let onChange = {
       set: (obj, prop, val) => {
         obj[prop] = val
-
-        if(!this.consume)
-          this.emit(ScrumElementEvent.CHANGE, obj)
+        this.emit(ScrumElementEvent.CHANGE, obj)
         return true
       }
     }
@@ -50,9 +44,10 @@ export class BacklogManager {
   public putElement(el: ScrumElement) {
     let current = this.getByID(el.id)
     for(let key in el) {
-      current[key] = el[key]
+      if(JSON.stringify(current[key]) != JSON.stringify(el[key])) { // stringify to compare strings in place of object or array
+        current[key] = el[key]
+      }
     }
-    this.consume = false
   }
 
   public getElements() {

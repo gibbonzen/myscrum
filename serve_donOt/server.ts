@@ -26,19 +26,10 @@ ioService.broadcastTest()
 
 // Backlog event
 let backlogManager = new BacklogManager()
-backlogManager.on(ScrumElementEvent.ADD, (el: ScrumElement) => 
-  ioService.broadcast(SocketEvent.SCRUM_ELEMENT_ADD, SocketObjectFactory.create<ScrumElement>(el)))
-
-backlogManager.on(ScrumElementEvent.UPDATE, (el: ScrumElement) => 
-  ioService.broadcast(SocketEvent.SCRUM_ELEMENT_PUT, SocketObjectFactory.create<ScrumElement>(el)))
-
-backlogManager.on(ScrumElementEvent.REMOVE, (el: ScrumElement) => 
-  ioService.broadcast(SocketEvent.SCRUM_ELEMENT_DEL, SocketObjectFactory.create<ScrumElement>(el)))
+backlogManager.on(ScrumElementEvent.ADD, (el: ScrumElement) => ioService.broadcast(SocketEvent.SCRUM_ELEMENT_ADD, SocketObjectFactory.create<ScrumElement>(el)))
+backlogManager.on(ScrumElementEvent.UPDATE, (el: ScrumElement) => ioService.broadcast(SocketEvent.SCRUM_ELEMENT_PUT, SocketObjectFactory.create<ScrumElement>(el)))
+backlogManager.on(ScrumElementEvent.REMOVE, (el: ScrumElement) => ioService.broadcast(SocketEvent.SCRUM_ELEMENT_DEL, SocketObjectFactory.create<ScrumElement>(el)))
 
 // Socket event
-
-ioService.on(SocketEvent.CONNECT, () => {
-  ioService.broadcast(SocketEvent.SCRUM_ELEMENT_GET, SocketObjectFactory.create<ScrumElement[]>(backlogManager.getAll()))
-})
-  
+ioService.on(SocketEvent.CONNECT, () => ioService.broadcast(SocketEvent.SCRUM_ELEMENT_GET, SocketObjectFactory.create<ScrumElement[]>(backlogManager.getAll())))
 ioService.on(SocketEvent.SCRUM_ELEMENT_PUT, (el: SocketObject<ScrumElement>) => backlogManager.updateElement(el.object))
