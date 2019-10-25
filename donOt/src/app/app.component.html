@@ -1,33 +1,39 @@
-<mat-toolbar class="toolbar" color="primary">
+<div class="main-container">
+  <mat-toolbar class="toolbar">
 
-    <span class="fill-remaining-space">
-        <img src="assets/img/donut.png" alt="">
-        donOt
-    </span>
-
-    <span class="align-left">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>menu</mat-icon>
-        </button>
-
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item routerLink="">
-            <mat-icon>home</mat-icon>
-            <span>Dashboard</span>
-          </button>
-
-          <button mat-menu-item routerLink="/backlog">
-            <mat-icon>shopping_basket</mat-icon>
-            <span>Backlog</span>
-          </button>
-
-          <button mat-menu-item routerLink="/chat">
-            <mat-icon>chat</mat-icon>
-            <span>Chat</span>
-          </button>
-        </mat-menu>
+      <span class="fill-remaining-space">
+          <span>
+            <img src="assets/img/donut.png" alt="This is « donOt »">
+            don<mat-icon>donut_small</mat-icon>t
+          </span>
       </span>
 
-</mat-toolbar>
+      <span class="align-left">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+          </button>
 
-<router-outlet></router-outlet>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="">
+              <mat-icon>home</mat-icon>
+              <span>Dashboard</span>
+            </button>
+
+            <button mat-menu-item routerLink="/backlog">
+              <mat-icon>shopping_basket</mat-icon>
+              <span>Backlog</span>
+            </button>
+
+            <button mat-menu-item routerLink="/chat">
+              <mat-icon>chat</mat-icon>
+              <span>Chat</span>
+            </button>
+          </mat-menu>
+        </span>
+
+  </mat-toolbar>
+
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

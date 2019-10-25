@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   MatButtonModule,
@@ -51,7 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
 	],
   exports: [
   	MatButtonModule,
@@ -76,8 +78,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatCardModule,
     MatFormFieldModule,
-    
-    ReactiveFormsModule
+
+    ReactiveFormsModule,
+    FlexLayoutModule
 	],
 })
 export class MaterialModule { }

@@ -4,5 +4,16 @@
 @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 /* @import '@angular/material/prebuilt-themes/purple-green.css'; */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+
+  background: url("./assets/img/wallpaper/13.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body {
+  min-width: 520px;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

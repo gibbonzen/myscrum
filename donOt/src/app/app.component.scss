@@ -1,3 +1,11 @@
+$rose-donut: rgb(236, 89, 128);
+$rose-donut-05: rgba(236, 89, 128, 0.5);
+
+.content-container {
+  margin: 5px;
+  height: 100%;
+}
+
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */
@@ -6,4 +14,5 @@
 
 .toolbar {
   height: 80px;
+  background-color: $rose-donut-05;
 }

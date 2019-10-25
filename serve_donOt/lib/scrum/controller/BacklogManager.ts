@@ -6,7 +6,6 @@ import { ScrumElementEvent } from "./ScrumElementEvent.enum";
 import { FileUtils } from "../../utils/FileUtils";
 import { LOG, Color } from "../../utils/LOG";
 import { AppConfig } from "../../utils/Config";
-import { fileURLToPath } from "url";
 
 export class BacklogManager {
   private emitter = new EventEmitter()
@@ -138,16 +137,9 @@ export class BacklogManager {
     if(oldElement === undefined) return false
     if(Object.keys(oldElement).length != Object.keys(newElement).length) return false;
     for(let key in newElement) {
-      // console.log(key, oldElement[key] == newElement[key])
-
-      if(oldElement[key] != newElement[key]) {
-        if(Array.isArray(oldElement[key])) {
-          if(oldElement[key].length === newElement[key].length)
-            continue
-        }
-
-        return false
-      }
+      console.log(key, JSON.stringify(oldElement[key]) == JSON.stringify(newElement[key]))
+        if(JSON.stringify(oldElement[key]) != JSON.stringify(newElement[key]))
+          return false
     }
 
     return true

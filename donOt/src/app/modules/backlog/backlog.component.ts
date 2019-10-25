@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-backlog',
   templateUrl: './backlog.component.html',
-  styleUrls: ['./backlog.component.css']
+  styleUrls: ['./backlog.component.scss']
 })
 export class BacklogComponent implements OnInit, AfterViewInit {
 

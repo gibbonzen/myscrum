@@ -1,28 +1,60 @@
-<p>backlog works!</p>
+<div class="grid-container">
+  <div class="grid-item donut-area"
+    fxFlex="2 0 75"
+    fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="5px">
 
-<mat-card class="card"
-          *ngFor="let el of backlogManager.getElements()">
+    <div class="element-card"
+      *ngFor="let item of backlogManager.getElements()">
+      <mat-card>
+        <mat-card-header matBadge="{{item.estimation}}">
+          <div mat-card-avatar>
+            <img src="../../../assets/img/icon/man-01.png" alt="" class="donut-header-image">
+          </div>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>{{item.id}}</mat-card-subtitle>
+          <mat-card-subtitle>{{item.assignee}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{item.description}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-  <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>{{el.name}}</mat-card-title>
-    <mat-card-subtitle>{{el.id}}</mat-card-subtitle>
-  </mat-card-header>
+  </div>
 
-  <mat-card-content>
+  <div class="grid-item user-area"
+    fxFlex="10"
+    fxLayout="column wrap" fxLayoutAlign="start end" fxLayoutGap="5px">
 
-    <p  *ngIf="!visible"
-        (click)="displayTextArea(el)">{{el.description}}</p>
+    <div class="user-card">
+        <mat-card>
+          <mat-card-title>User 1</mat-card-title>
+          <img mat-card-image src="../../../assets/img/icon/man-06.png" alt="User 1">
+        </mat-card>
+      </div>
 
-    <mat-form-field *ngIf="visible" class="width-100">
-      <textarea matInput placeholder="Description"
-                [formControl]="description" class="width-100"></textarea>
-    </mat-form-field>
+      <div class="user-card">
+        <mat-card>
+          <mat-card-title>User 2</mat-card-title>
+          <img mat-card-image src="../../../assets/img/icon/girl-03.png" alt="User 2">
+        </mat-card>
+      </div>
 
-  </mat-card-content>
+      <div class="user-card">
+          <mat-card>
+            <mat-card-title>User 3</mat-card-title>
+            <img mat-card-image src="../../../assets/img/icon/man-02.png" alt="User 3">
+          </mat-card>
+      </div>
 
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="update(el)">UPDATE</button>
-  </mat-card-actions>
+      <div class="user-card">
+        <mat-card>
+          <mat-card-title>User 4</mat-card-title>
+          <img mat-card-image src="../../../assets/img/icon/man-03.png" alt="User 3">
+        </mat-card>
+      </div>
 
-</mat-card>
+  </div>
+</div>
