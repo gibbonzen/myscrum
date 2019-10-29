@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BacklogManager } from './backlog-manager.service';
+import { SprintManager } from './sprints-manager.service';
 
 export interface ScrumFeatureManager {
   backlogManager: BacklogManager
-  // sprintManager: SprintManager
-  // sandboxManager:
+  sprintManager: SprintManager
+  //sandboxManager:
 }
 
 @Injectable({
@@ -12,6 +13,7 @@ export interface ScrumFeatureManager {
 })
 export class ScrumManager implements ScrumFeatureManager {
   backlogManager: BacklogManager
+  sprintManager: SprintManager
 
-  constructor(backlogManager: BacklogManager) {}
+  constructor(backlogManager: BacklogManager, sprintManager: SprintManager) {}
 }

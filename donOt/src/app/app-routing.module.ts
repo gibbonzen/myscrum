@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: './modules/backlog/backlog.module#BacklogModule',
   },
   {
+    path: 'sprint',
+    loadChildren: './modules/sprint/sprint.module#SprintModule',
+  },
+  {
     path: 'chat',
     loadChildren: './modules/chat/chat.module#ChatModule'
   },

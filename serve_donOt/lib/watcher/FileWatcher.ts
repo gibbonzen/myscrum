@@ -31,6 +31,7 @@ export class FileWatcher {
   private watch() {
     this.watcher
       .on('add', (path, stats) => this.onFileAdded(path, stats))
+      .on('addDir', (path, stats)  => console.log('Directory', path, 'has been added'))
       .on('change', (path, stats) => this.onFileChange(path, stats))
       .on('unlink', (path, stats) => this.onFileUnlink(path, stats))
   }
@@ -69,7 +70,7 @@ export class FileWatcher {
    * Read file on added
    */
   private onFileAdded(path, stats) {
-    // console.log(`File added: ${Path.basename(path)}`)
+    console.log(`File added: ${Path.basename(path)}`)
     this.emitter.emit(FileWatcherEvent.ADD, {path: path, stats: stats})
   }
   

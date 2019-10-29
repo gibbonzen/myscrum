@@ -5,17 +5,16 @@ import { SocketEvent } from '../../models/socket/SocketEvent.model';
 import { EventEmitter } from 'events';
 import { Manager } from './manager.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class BacklogManager extends Manager {
+export class SprintManager extends Manager {
   constructor(protected scrumService: ScrumElementService) {
     super(scrumService)
   }
 
   public addElement(el: ScrumElement) {
-    if( el.sprint === "backlog" )
+    if( el.sprint !== "backlog" )
         super.addElement(el)
-  }
+    }
 }

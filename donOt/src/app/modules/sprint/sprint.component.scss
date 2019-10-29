@@ -1,0 +1,42 @@
+@mixin width-100 {
+    width: 100%;
+  }
+  
+  @mixin height-100 {
+    height: 100%;
+  }
+  
+  .row-container {
+    align-items: flex-start;
+  }
+  
+  .element-card {
+    width: 350px;
+    margin-bottom: 5px;
+  }
+  
+  .user-card {
+    text-align: center;
+    min-width: 150px;
+  }
+  
+  .grid-container {
+    @include width-100;
+    @include height-100;
+    display: grid;
+    grid-template-areas:
+      'd d d d d d d d d u u';
+  }
+  
+  .grid-container .donut-area {
+    grid-area: d;
+  }
+  .grid-container .user-area {
+    grid-area: u;
+  }
+  
+  .donut-header-image {
+    width: 50px;
+    background-size: cover;
+  }
+  
