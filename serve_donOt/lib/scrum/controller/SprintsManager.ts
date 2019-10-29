@@ -52,7 +52,7 @@ export class SprintsManager extends Manager {
       }
 
       this.dataFiles.set(dataFile.data.id, dataFile.file.path)
-      if(!this.exists(dataFile.data.id)) {
+      if(!this.exists(dataFile.data.id) && dataFile.data.sprint === this.activeSprint) {
         this.addElement(dataFile.data)
       }
 
