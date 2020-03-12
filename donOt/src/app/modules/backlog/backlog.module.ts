@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BacklogRoutingModule } from './backlog-routing.module';
 import { BacklogComponent } from './backlog.component';
 import { MaterialModule } from 'src/app/material.module';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MaterialModule } from 'src/app/material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    BacklogRoutingModule
+    BacklogRoutingModule,
+    ComponentsModule
   ],
   exports: [BacklogComponent]
 })

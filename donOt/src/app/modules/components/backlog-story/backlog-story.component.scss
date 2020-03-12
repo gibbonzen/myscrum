@@ -1,0 +1,39 @@
+.card {
+  background: #424242;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 50px auto;
+
+  column-gap: 5px;
+}
+
+.avatar {
+  display: inline-block;
+
+  img {
+    width: 50px;
+    background-size: cover;
+  }
+}
+
+.title {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.id {
+  font-size: 14px;
+  font-weight: normal;
+  color: rgba(255,255,255,.7);
+}
+
+.content {
+  font-size: 14px;
+}

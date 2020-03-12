@@ -1,0 +1,43 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558 
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Server Build",
+      "type": "typescript",
+      "tsconfig": "serve_donOt/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "options": {
+        "cwd": "${workspaceRoot}/serve_donOt"
+      }
+    },
+    {
+      "label": "Client Build",
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceRoot}/donOt"
+      }
+    },
+    {
+      "label": "Server launch",
+      "type": "npm",
+      "script": "start",
+      "options": {
+        "cwd": "${workspaceRoot}/serve_donOt"
+      }
+    },
+    {
+      "label": "Client launch",
+      "type": "npm",
+      "script": "start",
+      "options": {
+        "cwd": "${workspaceRoot}/donOt"
+      }
+    }
+  ]
+}

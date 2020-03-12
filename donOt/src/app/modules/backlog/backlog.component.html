@@ -1,60 +1,46 @@
 <div class="grid-container">
-  <div class="grid-item donut-area"
-    fxFlex="2 0 75"
-    fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="5px">
 
-    <div class="element-card"
-      *ngFor="let item of backlogManager.getElements()">
-      <mat-card>
-        <mat-card-header matBadge="{{item.estimation}}">
-          <div mat-card-avatar>
-            <img src="../../../assets/img/icon/man-01.png" alt="" class="donut-header-image">
-          </div>
-          <mat-card-title>{{item.name}}</mat-card-title>
-          <mat-card-subtitle>{{item.id}}</mat-card-subtitle>
-          <mat-card-subtitle>{{item.assignee}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>
-            {{item.description}}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
+  <div class="action-area">
+    <tooltip-hover-button color="primary" type="fab">
+      <mat-icon>
+        add
+      </mat-icon>
+    </tooltip-hover-button>
   </div>
 
-  <div class="grid-item user-area"
-    fxFlex="10"
-    fxLayout="column wrap" fxLayoutAlign="start end" fxLayoutGap="5px">
-
-    <div class="user-card">
-        <mat-card>
-          <mat-card-title>User 1</mat-card-title>
-          <img mat-card-image src="../../../assets/img/icon/man-06.png" alt="User 1">
-        </mat-card>
-      </div>
-
-      <div class="user-card">
-        <mat-card>
-          <mat-card-title>User 2</mat-card-title>
-          <img mat-card-image src="../../../assets/img/icon/girl-03.png" alt="User 2">
-        </mat-card>
-      </div>
-
-      <div class="user-card">
-          <mat-card>
-            <mat-card-title>User 3</mat-card-title>
-            <img mat-card-image src="../../../assets/img/icon/man-02.png" alt="User 3">
-          </mat-card>
-      </div>
-
-      <div class="user-card">
-        <mat-card>
-          <mat-card-title>User 4</mat-card-title>
-          <img mat-card-image src="../../../assets/img/icon/man-03.png" alt="User 3">
-        </mat-card>
-      </div>
-
+  <div class="card-area">
+    <ng-container *ngFor="let item of backlogManager.getElements()">
+      <app-backlog-story [doModel]="item" class="card"></app-backlog-story>
+    </ng-container>
   </div>
+
+  <div class="user-filter">
+    <mat-form-field class="filterbox">
+      <mat-label>User filter</mat-label>
+      <input matInput placeholder="">
+    </mat-form-field>
+  </div>
+
+  <div class="user-area">
+      <div class="user-card">
+        <div class="user-name">User 1</div>
+        <img class="user-avatar" src="../../../assets/img/icon/man-06.png" alt="User 1">
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">User 2</div>
+        <img class="user-avatar" src="../../../assets/img/icon/girl-03.png" alt="User 2">
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">User 3</div>
+        <img class="user-avatar" src="../../../assets/img/icon/man-02.png" alt="User 3">
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">User 4</div>
+        <img class="user-avatar" src="../../../assets/img/icon/man-03.png" alt="User 4">
+      </div>
+  </div>
+
 </div>

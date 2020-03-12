@@ -6,33 +6,69 @@
   height: 100%;
 }
 
-.row-container {
-  align-items: flex-start;
+.grid-container {
+  @include height-100();
+  display: grid;
+  grid-template-columns: auto 15%;
+  grid-template-rows: 60px auto;
+  justify-content: stretch;
+  align-content: stretch;
 }
 
-.element-card {
-  width: 350px;
-  margin-bottom: 5px;
+.action-area {
+  // background: lightgreen;
+  padding-left: 5px;
+  padding-right: 5px;
+  grid-column: 1;
+  grid-row: 1;
+
+  display: grid;
+  justify-content: right;
+}
+
+.card-area {
+  // background: lightcoral;
+  grid-column: 1 / 2;
+  grid-row: 2;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  align-content: stretch;
+  justify-content: space-between;
+
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.card {
+  // background: lightgoldenrodyellow;
+}
+
+.user-area {
+  // background: lightblue;
+  grid-column: 2;
+  grid-row: 2;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+}
+
+.user-filter {
+  // background: lightseagreen;
+
+  .filterbox {
+    width: 100%;
+  }
 }
 
 .user-card {
   text-align: center;
-  min-width: 150px;
-}
 
-.grid-container {
-  @include width-100;
-  @include height-100;
-  display: grid;
-  grid-template-areas:
-    'd d d d d d d d d u u';
-}
-
-.grid-container .donut-area {
-  grid-area: d;
-}
-.grid-container .user-area {
-  grid-area: u;
+  .user-avatar {
+    max-width: 150px;
+  }
 }
 
 .donut-header-image {

@@ -13,6 +13,7 @@ import { ChatModule } from './modules/chat/chat.module';
 import { BacklogModule } from './modules/backlog/backlog.module';
 import { SprintModule } from './modules/sprint/sprint.module';
 import { ScrumManager } from './services/scrum/scrum.manager.service';
+import { ComponentsModule } from './modules/components/components.module';
 
 const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -20,13 +21,14 @@ const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {}
   declarations: [
     // Components
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
     HttpClientModule,
+    ComponentsModule,
 
     SocketIoModule.forRoot(socketRoutes),
 
@@ -35,7 +37,10 @@ const socketRoutes: SocketIoConfig = { url: 'http://localhost:8080', options: {}
 
     BacklogModule,
 
-    SprintModule
+    SprintModule,
+
+    // Component
+
   ],
   providers: [],
   bootstrap: [AppComponent]
