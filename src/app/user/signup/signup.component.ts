@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/firebase/auth.service';
 import { Router } from '@angular/router';
+import { PixabayService } from 'src/api/pixabay.service';
 
 @Component({
   selector: 'eat-signup',
@@ -20,7 +21,8 @@ export class SignupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private pixabayService: PixabayService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -31,6 +33,9 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*?[a-z])(?=.*?[A-Z]).{8,}$/)]]
     });
+    
+  this.pixabayService.randomOne("montagne", img => 
+    this.renderer.setStyle(this.frame.nativeElement, 'background-image', `url('${img.largeImageURL}')`));
   }
   
   onSubmit() {
