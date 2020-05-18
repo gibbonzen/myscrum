@@ -1,0 +1,10 @@
+<div class="ticket">
+  <mat-error *ngIf="!story.history">
+    Cannot display a empty story...
+  </mat-error>
+
+  <mat-icon>{{getLastUpdate().job.icon}}</mat-icon>
+  <mat-icon>account_circle</mat-icon>
+  <span>{{story.name}}</span>
+  
+</div>

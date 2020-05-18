@@ -1,0 +1,22 @@
+<div class="grid">
+
+  <eat-story-table class="todo_table" header="todo" [stories]="getTodo()">
+
+    <button mat-fab color="primary" class="add_button" 
+      (click)="createStory()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </eat-story-table>
+
+  <div class="slider"></div>
+
+  <eat-story-table header="progress" [stories]="getInProgress()">
+  </eat-story-table>
+
+  <div class="slider"></div>
+
+  <eat-story-table header="done" [stories]="getDone()">
+  </eat-story-table>
+
+
+</div>

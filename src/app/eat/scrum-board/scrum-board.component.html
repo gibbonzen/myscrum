@@ -1,0 +1,23 @@
+<div class="page_content container flex row">
+
+  <div class="search_bar stretch">
+      <mat-form-field appearance="fill">
+          <mat-chip-list #chipList aria-label="filters">
+              <mat-chip *ngFor="let tag of tags" selected removable="true" color="{{tag.color}}">
+                  {{tag.name}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+
+              <input placeholder="Search" [matChipInputFor]="chipList">
+              <button mat-icon-button matSuffix>
+                  <mat-icon>search</mat-icon>
+              </button>
+          </mat-chip-list>
+      </mat-form-field>
+  </div>
+
+  <div class="table">
+      <eat-dashboard [stories]="stories"></eat-dashboard>
+  </div>
+
+</div>

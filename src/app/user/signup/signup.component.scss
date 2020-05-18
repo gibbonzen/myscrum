@@ -1,0 +1,80 @@
+:host, .frame {
+    width: 100%;
+    min-width: 900px;
+    height: 100%;
+    min-height: 500px;
+    transition: all .4s;
+}
+
+.frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    background: url('https://pixabay.com/fr/images/download/canyon-1740973.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+
+    &.blur .glasspane {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background: inherit;
+        filter: blur(1rem);
+
+        transition: all .4s;
+    }
+
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+
+    width: 250px;
+    height: 300px;
+    padding: 20px;
+    
+    z-index: 10;
+
+    transition: all .3s;
+
+    background-color: #1E1E1E;
+    box-shadow: #000 0px 0px 10px;
+    border-radius: 5px;
+
+    color: #FFF;
+    
+    h2 {
+        text-align: center;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: -96px;
+        color: #1E1E1E;
+        text-shadow: #FFF 0 0 5px;
+
+        .md-96 {
+            font-size: 96px;
+        }
+    }
+
+    form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        mat-form-field {
+            width: 100%;
+        }
+    }
+}

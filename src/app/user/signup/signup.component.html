@@ -1,0 +1,59 @@
+<div class="frame blur" #frame>
+    <div class="dialog roll" #dialog (mouseenter)="blur(true)" (mouseleave)="blur(false)">
+        <div>
+            <div class="header">
+                <i class="icons material-icons md-96">account_circle</i>
+            </div>
+            
+            <h2>Sign up in seconds</h2>
+        </div>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput type="text" placeholder="Email" formControlName="email" >
+                    <mat-icon matPrefix>alternate_email</mat-icon>
+                    
+                    <mat-error *ngIf="signupForm.controls.email.errors">
+                        <div *ngIf="signupForm.controls.email.errors.required">
+                            Your email is required
+                        </div>
+                        <div *ngIf="signupForm.controls.email.errors.email">
+                            Your email is not valid
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" >
+                    <mat-icon matPrefix>lock</mat-icon>
+                    
+                    <button mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+                    <mat-error *ngIf="signupForm.controls.password.errors">
+                        <div *ngIf="signupForm.controls.password.errors.required">Your password is required</div>
+                        <div *ngIf="signupForm.controls.password.errors.pattern">
+                            You should use at least 8 alpha-numeric characters with at least 1 lowercase letter and 1 uppercase letter</div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+
+            <button mat-raised-button 
+                type="submit"
+                [disabled]="signupForm.invalid">
+                Sign me up !
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="glasspane"></div>
+</div>

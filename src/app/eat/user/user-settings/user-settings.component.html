@@ -1,0 +1,16 @@
+<button mat-button [matMenuTriggerFor]="userSettings">
+    <mat-icon>account_circle</mat-icon>
+    <span class="user"> {{getUserEmail()}}</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #userSettings xPosition="before" yPosition="above">
+    <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+    </button>
+    <button mat-menu-item (click)="onSignOut()">
+        <mat-icon>logout</mat-icon>
+        <span>Log out</span>
+    </button>
+</mat-menu>

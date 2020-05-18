@@ -1,0 +1,9 @@
+<div class="table_header">
+  {{header}}
+</div>
+
+<eat-story-ticket *ngFor="let story of stories"
+  [story]="story">
+</eat-story-ticket>
+
+<ng-content></ng-content>

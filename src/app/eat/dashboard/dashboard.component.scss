@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: 20% 3px auto 3px 20%;
+}
+
+eat-story-table {
+  color: #FFF;
+  // background-color: lightblue;
+}
+
+.slider {}
+
+.todo_table {
+  display: flex;
+  flex-direction: column;
+
+  .add_button {
+    align-self: flex-end;
+  }
+
+}
