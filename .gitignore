@@ -47,4 +47,4 @@ Thumbs.db
 
 
 # hidden files
-environments/
+src/environments/
