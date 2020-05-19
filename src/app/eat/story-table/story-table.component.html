@@ -2,8 +2,11 @@
   {{header}}
 </div>
 
-<eat-story-ticket *ngFor="let story of stories"
-  [story]="story">
-</eat-story-ticket>
+<div class="dropList" cdkDropList cdkDropListData="{{status}}" (cdkDropListDropped)="drop($event)">
+
+  <eat-story-ticket *ngFor="let story of stories" [story]="story" cdkDrag [cdkDragData]="story">
+  </eat-story-ticket>
+
+</div>
 
 <ng-content></ng-content>

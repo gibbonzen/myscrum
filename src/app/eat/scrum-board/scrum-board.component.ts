@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../model/story.model';
-import { DbService } from 'src/firebase/db.service';
-import { Subscription } from 'rxjs';
+import { StoryService } from '../../../service/story/story.service';
+import { Tag } from '../model/tag.model';
+import { Filter } from '../model/filter.model';
 
-interface Tag {
-  name: string,
-  color: string
-}
 
 @Component({
   selector: 'eat-scrum-board',
@@ -23,13 +20,13 @@ export class ScrumBoardComponent implements OnInit {
   ];
 
   stories: Story[] = [];
-  storiesSubscription: Subscription;
+  filters: Filter[] = [];
 
-  constructor(private dbService: DbService) { }
+  constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
-    this.dbService.storiesSubject.subscribe(stories => this.stories = stories);
-    this.dbService.emitStories();
+    this.storyService.subject.subscribe(stories => this.stories = stories);
+    this.storyService.emit();
   }
 
 }

@@ -1,4 +1,15 @@
 .ticket {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 24px 24px auto;
+  column-gap: 5px;
+
+  padding: 10px;
+
+  &:hover {
+    border: 1px solid #fff;
+  }
+
+  .name {
+    overflow: hidden;
+  }
 }

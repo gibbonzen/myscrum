@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 const materialComponents = [
@@ -40,6 +41,8 @@ const materialComponents = [
   MatExpansionModule,
   MatSliderModule,
   MatTooltipModule,
+
+  DragDropModule,
   
 ];
 

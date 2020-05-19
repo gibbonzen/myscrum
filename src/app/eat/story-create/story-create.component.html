@@ -1,1 +1,32 @@
-<p>story-create works!</p>
+<div class="title_bar">{{model.title}}</div>
+
+<form [formGroup]="form" (ngSubmit)="create()">
+
+    <mat-form-field>
+        <mat-label>Story name</mat-label>
+        <input matInput type="text" placeholder="Enter story name" formControlName="name" required>
+        <mat-error *ngIf="form.controls.name.errors?.required">Please named the story</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Job</mat-label>
+        <input type="text" matInput formControlName="job" [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let job of jobs" [value]="job.name">
+            <mat-icon>{{job.icon}}</mat-icon>
+            {{job.name}}
+        </mat-option>
+    </mat-autocomplete>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="desc" cdkTextareaAutosize="true" required></textarea>
+        <mat-error *ngIf="form.controls.desc.errors?.required">Please describe the story</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Create
+    </button>
+</form>
