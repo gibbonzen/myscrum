@@ -33,7 +33,7 @@ export class StoryService {
   }
 
   getOne(id: number) {
-    return this.dbService.getStory(this._name, id);
+    return this.dbService.getOne(this._name, id);
   }
 
   create(story: Story) {

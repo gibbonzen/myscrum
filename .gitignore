@@ -48,3 +48,5 @@ Thumbs.db
 
 # hidden files
 src/environments/
+.firebase/
+.editorconfig

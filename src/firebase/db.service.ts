@@ -18,7 +18,7 @@ export class DbService {
       });
   }
 
-  getStory(entity: string, id: number) {
+  getOne(entity: string, id: number) {
     return new Promise((resolve, reject) => {
       firebase.database().ref(`/${entity}` + id).once('value').then((data: firebase.database.DataSnapshot) => {
         resolve(data.val());

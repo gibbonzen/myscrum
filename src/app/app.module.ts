@@ -18,6 +18,7 @@ import { StoryTableComponent } from './eat/story-table/story-table.component';
 import { DashboardComponent } from './eat/dashboard/dashboard.component';
 import { ScrumBoardComponent } from './eat/scrum-board/scrum-board.component';
 import { StoryCreateComponent } from './eat/story-create/story-create.component';
+import { FontAwesomeShorcutsModule } from 'src/material/font-awesome/font-awesome-shorcuts.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StoryCreateComponent } from './eat/story-create/story-create.component'
     DashboardComponent,
     ScrumBoardComponent,
     StoryCreateComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,8 @@ import { StoryCreateComponent } from './eat/story-create/story-create.component'
     MaterialComponentModule,
 
     HttpModule,
+
+    FontAwesomeShorcutsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

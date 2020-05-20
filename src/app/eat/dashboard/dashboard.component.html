@@ -1,11 +1,9 @@
 <div class="grid" cdkDropListGroup>
 
-  <eat-story-table class="todo_table" header="todo" [stories]="getTodo()" status="todo" accept="progress">
-
+  <eat-story-table header="todo" [stories]="getTodo()" status="todo" accept="progress">
     <button mat-fab color="primary" class="add_button" (click)="createStory()">
       <mat-icon>add</mat-icon>
     </button>
-
   </eat-story-table>
 
   <div class="slider"></div>

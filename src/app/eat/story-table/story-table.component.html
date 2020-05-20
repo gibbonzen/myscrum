@@ -1,12 +1,21 @@
-<div class="table_header">
-  {{header}}
-</div>
+  <div class="table" cdkDropList [cdkDropListData]="status" (cdkDropListDropped)="drop($event)">
 
-<div class="dropList" cdkDropList cdkDropListData="{{status}}" (cdkDropListDropped)="drop($event)">
+    <div class="header">
+      {{header}}
+    </div>
 
-  <eat-story-ticket *ngFor="let story of stories" [story]="story" cdkDrag [cdkDragData]="story">
-  </eat-story-ticket>
+    <div class="items">
 
-</div>
+      <eat-story-ticket *ngFor="let story of stories" [story]="story" cdkDrag [cdkDragData]="story">
+          <div *cdkDragPreview>
+            <div class="dragPreview">            
+              <eat-story-ticket [story]="story"></eat-story-ticket>
+            </div>
+          </div>
+      </eat-story-ticket>
 
-<ng-content></ng-content>
+    </div>
+
+    <ng-content></ng-content>
+
+  </div>

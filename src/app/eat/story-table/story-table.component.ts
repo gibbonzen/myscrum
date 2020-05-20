@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../model/story.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Status } from '../model/status.model';

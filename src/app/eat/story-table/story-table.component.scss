@@ -1,11 +1,23 @@
 :host {
   border: #000 1px dotted;
   padding: 10px;
+  // background-color: lightblue;
 }
 
-.table_header {
-  text-align: center;
-  font-size: 1.1rem;
-  border-bottom: #000 1px dotted;
-  padding: 5px;
+.table {
+  height: 100%;
+  // background-color: lightgreen;
+
+  .header {
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: #000 1px dotted;
+    padding: 5px;
+  }
+
+}
+
+.dragPreview {
+  background-color: #C2185B;
+  transform: rotate(10deg);
 }
