@@ -1,0 +1,16 @@
+<mat-form-field class="chip-list">
+    <mat-chip-list #chipList aria-label="Filter tags">
+        <mat-chip *ngFor="let tag of tags" selectable="true" removable="true" (removed)="remove(tag)" 
+            [colorize]="tag.color" selected [color]="tag.color">
+            {{tag.name}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+
+        <input placeholder="New filter..." [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-chip-list>
+</mat-form-field>

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../model/story.model';
 import { StoryUtils } from 'src/service/story/story-utils.service';
-import { Filter } from '../model/filter.model';
 import { StoryCreateComponent } from '../story-create/story-create.component';
 import { DialogService } from 'src/external_modules/ui/dialog/service/dialog.service';
 
@@ -13,7 +12,6 @@ import { DialogService } from 'src/external_modules/ui/dialog/service/dialog.ser
 })
 export class DashboardComponent implements OnInit {
   @Input() stories: Story[] = [];
-  @Input() filters: Filter[] = [];
 
   constructor(private dialogService: DialogService,
     private storyUtils: StoryUtils) { }

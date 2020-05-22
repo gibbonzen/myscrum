@@ -15,7 +15,7 @@
 
     <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let job of jobs" [value]="job.name">
-            <mat-icon>{{job.icon}}</mat-icon>
+            <faIcon [icon]="getIcon(job)"></faIcon>
             {{job.name}}
         </mat-option>
     </mat-autocomplete>

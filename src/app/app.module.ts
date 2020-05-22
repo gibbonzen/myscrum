@@ -19,6 +19,7 @@ import { DashboardComponent } from './eat/dashboard/dashboard.component';
 import { ScrumBoardComponent } from './eat/scrum-board/scrum-board.component';
 import { StoryCreateComponent } from './eat/story-create/story-create.component';
 import { FontAwesomeShorcutsModule } from 'src/material/font-awesome/font-awesome-shorcuts.module';
+import { CustomUiModule } from 'src/external_modules/ui/custom-ui.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { FontAwesomeShorcutsModule } from 'src/material/font-awesome/font-awesom
 
     HttpModule,
 
-    FontAwesomeShorcutsModule
+    FontAwesomeShorcutsModule,
+
+    CustomUiModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -33,7 +33,6 @@ const materialComponents = [
   MatCardModule,
   MatFormFieldModule,
   MatDialogModule,
-  
   MatInputModule,
   MatChipsModule,
   MatSelectModule,

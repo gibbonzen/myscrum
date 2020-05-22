@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../model/story.model';
 import { StoryService } from '../../../service/story/story.service';
-import { Tag } from '../model/tag.model';
-import { Filter } from '../model/filter.model';
+import { FilterService } from 'src/service/story/filter.service';
 
 
 @Component({
@@ -11,22 +10,25 @@ import { Filter } from '../model/filter.model';
   styleUrls: ['./scrum-board.component.scss']
 })
 export class ScrumBoardComponent implements OnInit {
-
-  tags: Tag[] = [
-    { name: "#tag", color: "primary", },
-    { name: "#waiting", color: "accent", },
-    { name: "#gerald", color: "warn", },
-    { name: "#syntax", color: "none", },
-  ];
-
   stories: Story[] = [];
-  filters: Filter[] = [];
+  filteredStories: Story[] = [];
 
-  constructor(private storyService: StoryService) { }
+  constructor(private storyService: StoryService,
+    private filterService: FilterService) { }
 
   ngOnInit(): void {
-    this.storyService.subject.subscribe(stories => this.stories = stories);
+    this.filterService.emitter.addListener(Story.classname, filters => this.computeFilters());
+
+    this.storyService.subject.subscribe(stories => {
+      this.stories = stories;
+      this.computeFilters();
+    });
+    
     this.storyService.emit();
+  }
+
+  private computeFilters() {
+    this.filteredStories = this.filterService.filter<Story>(this.stories, Story.classname);
   }
 
 }

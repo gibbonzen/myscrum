@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DbService } from 'src/firebase/db.service';
 import { Story } from '../../app/eat/model/story.model';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 @Injectable({

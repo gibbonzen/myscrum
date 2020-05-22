@@ -1,8 +1,13 @@
 import { History } from './history.model';
 import { Job } from './job.model';
 import { User } from 'firebase';
+import { Filterable, StaticImplements } from './filter.model';
+import { Tools } from 'src/service/story/tools';
 
+@StaticImplements<Filterable<Story>>()
 export class Story {
+  static classname: string = `Story_${Tools.uuid()}`;
+
   name: string;
   description: string;
   history: History[] = [];
@@ -15,6 +20,10 @@ export class Story {
       job: job,
       status: "todo"
     });
+  }
+
+  static empty(): Story {
+    return new Story(null, null, null);
   }
 
 }

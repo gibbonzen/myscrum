@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Job } from '../model/job.model';
+import { Job, getIcon } from '../model/job.model';
 import { Story } from '../model/story.model';
 import { StoryService } from 'src/service/story/story.service';
 import { Closable } from 'src/external_modules/ui/dialog/dialog.component';
 
 const JOBS: Job[] = [
-  { name: 'dev', icon: 'settings_ethernet' },
-  { name: 'tma', icon: 'bug_report' },
-  { name: 'test', icon: 'done' },
-  { name: 'support', icon: 'call' }
+  { name: 'dev' },
+  { name: 'tma' },
+  { name: 'test' },
+  { name: 'support' }
 ];
 
 @Component({
@@ -35,8 +35,10 @@ export class StoryCreateComponent implements OnInit, Closable {
       job: ['', Validators.required],
       desc: ['', Validators.required]
     });
+  }
 
-    console.log(this.onClose);
+  getIcon(job: Job) {
+    return getIcon(job);
   }
 
   create() {

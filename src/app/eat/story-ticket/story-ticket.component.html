@@ -4,8 +4,12 @@
     Cannot display a empty story...
   </mat-error>
 
-  <mat-icon>{{getLastUpdate().job.icon}}</mat-icon>
-  <mat-icon>account_circle</mat-icon>
+  <faIcon [icon]="getIcon()"></faIcon>
+  
+  <div class="avatar h24">
+    <img src="assets/avatar/png_24/avatar-365-456317.png" *ngIf="lastHistory.user" />
+  </div>
+  
   <span class="name">{{story.name}}</span>
   
 </div>

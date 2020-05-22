@@ -5,6 +5,8 @@ import { Status } from '../model/status.model';
 import { StoryService } from '../../../service/story/story.service';
 import { StoryUtils } from 'src/service/story/story-utils.service';
 
+import { environment as env } from '../../../environments/environment';
+
 @Component({
   selector: 'eat-story-table',
   templateUrl: './story-table.component.html',
@@ -35,7 +37,10 @@ export class StoryTableComponent implements OnInit {
       console.log("Item accepted");
 
       this.storyUtils.updateStatus(story, this.status);
-      this.storyService.save();
+      
+      if(env.production) {
+        this.storyService.save();
+      }
     }
     else {
       console.log("Item rejected");
